@@ -38,7 +38,12 @@ def download_pics(opts, cache_dir)
     end
   end
 
-  url_base = "https://www.reddit.com/r/#{opts.subreddit.strip}/top.json?t=month"
+  sort = IO.popen "echo -e 'hot\nnew\ntop\ncontroversial' | dmenu -p \"Select Sorting\""
+  sort = sort.gets
+  time = IO.popen "echo -e 'all\nday\nnow\nweek\nmonth\nyear' | dmenu -p \"Time Selection\""
+  time = time.gets
+
+  url_base = "https://www.reddit.com/r/#{opts.subreddit.strip}/#{sort.strip}.json?t=#{time.strip}"
   memes = IO.popen("curl -s -H 'user-agent: bot' #{url_base}")
   memes = JSON.parse(memes.gets)
 

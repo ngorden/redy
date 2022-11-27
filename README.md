@@ -1,4 +1,4 @@
-#Redy
+# Redy
 
 Redy is a remake of [Redyt](https://github.com/BugsWriter/redyt) written in Ruby.
 
